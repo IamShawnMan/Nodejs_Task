@@ -1,7 +1,6 @@
 const letters = Array.from({ length: 26 }, (_, i) =>
   String.fromCharCode(97 + i)
 );
-console.log(letters);
 
 class CeaserCipher {
   constructor(shift) {
@@ -17,9 +16,9 @@ class CeaserCipher {
         if (!letters.includes(e)) {
           return (newChar = e);
         }
-        let newIndex = letters.indexOf(e) - this.shift;
-        if (newIndex < 0) {
-          newIndex = letters.length + newIndex;
+        let newIndex = letters.indexOf(e) + this.shift;
+        if (newIndex > 25) {
+          newIndex = newIndex - letters.length;
         }
         newChar = letters[newIndex];
         return newChar.toUpperCase();
@@ -36,9 +35,9 @@ class CeaserCipher {
         if (!letters.includes(e)) {
           return (newChar = e);
         }
-        let newIndex = letters.indexOf(e) + this.shift;
-        if (newIndex > 25) {
-          newIndex = newIndex - letters.length;
+        let newIndex = letters.indexOf(e) - this.shift;
+        if (newIndex < 0) {
+          newIndex = letters.length + newIndex;
         }
         newChar = letters[newIndex];
         return newChar.toUpperCase();
@@ -49,5 +48,5 @@ class CeaserCipher {
 }
 
 const newCode = new CeaserCipher(5);
-newCode.encode("Hello Dunyo");
-newCode.decode("Hello Dunyo");
+newCode.encode("Codewars");
+newCode.decode("BFKKQJX");
